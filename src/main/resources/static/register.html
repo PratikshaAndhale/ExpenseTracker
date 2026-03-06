@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="card">
+
+    <h2>Registration</h2>
+
+    <input id="username" placeholder="Username">
+    <input id="password" type="password" placeholder="Password">
+    <input id="email" placeholder="Email">
+    <input id="name" placeholder="Full Name">
+
+    <button onclick="register()">Register</button>
+
+    <p>
+        <a href="login.html">Already have account? Login</a>
+    </p>
+
+</div>
+
+<script>
+
+    function register(){
+
+    fetch("http://localhost:8080/auth/register",{
+    method:"POST",
+    headers:{
+    "Content-Type":"application/json"
+    },
+    body:JSON.stringify({
+    username:document.getElementById("username").value,
+    password:document.getElementById("password").value,
+    email:document.getElementById("email").value,
+    fullName:document.getElementById("name").value
+    })
+    })
+    .then(res=>res.json())
+    .then(data=>{
+    alert("Registration Success")
+    window.location.href="login.html"
+    })
+
+    }
+
+</script>
+
+</body>
+</html>

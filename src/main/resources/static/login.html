@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="card">
+    <h2>Login Page</h2>
+
+    <input id="username" placeholder="Username">
+    <input id="password" type="password" placeholder="Password">
+
+    <button onclick="login()">Login</button>
+
+    <p>
+        <a href="register.html">New user? Register here</a>
+    </p>
+</div>
+
+<script>
+
+    function login(){
+
+    fetch("http://localhost:8080/auth/login",{
+    method:"POST",
+    headers:{
+    "Content-Type":"application/json"
+    },
+    body:JSON.stringify({
+    username:document.getElementById("username").value,
+    password:document.getElementById("password").value
+    })
+    })
+    .then(res=>res.json())
+    .then(data=>{
+    alert("Login Success")
+    window.location.href="dashboard.html"
+    })
+
+    }
+
+</script>
+
+</body>
+</html>

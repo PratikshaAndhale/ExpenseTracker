@@ -1,0 +1,35 @@
+<h2>Welcome to Expense Tracker</h2>
+
+<a href="add-expense.html">Add Expense</a>
+<a href="update-expense.html">Update Expense</a>
+<a href="#" onclick="loadExpenses()">Expense List</a>
+
+<div id="list"></div>
+
+<script>
+
+    function loadExpenses(){
+
+    fetch("http://localhost:8080/expenses")
+    .then(res=>res.json())
+    .then(data=>{
+
+    let html="";
+
+    data.forEach(e=>{
+    html+=`
+    <div>
+    <h3>${e.title}</h3>
+    <p>Amount : ${e.amount}</p>
+    <p>Date : ${e.date}</p>
+    </div>
+    `
+    })
+
+    document.getElementById("list").innerHTML=html
+
+    })
+
+    }
+
+</script>
